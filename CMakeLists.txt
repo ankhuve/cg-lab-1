@@ -4,18 +4,20 @@ cmake_minimum_required (VERSION 2.6)
 project ( FirstLab )
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
-set(SOURCE_FILES skeleton.cpp)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/build)
+#set(SOURCE_FILES skeleton.cpp)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin)
 
-add_executable( FirstLab ${SOURCE_FILES})
+add_executable( FirstLab skeleton.cpp )
 
-set(SDL_LIBRARY_DIR ${PROJECT_SOURCE_DIR}/lib)
-set(SDL_INCLUDE_DIR ${PROJECT_SOURCE_DIR}/include)
+set(SDL_LIBRARY ${PROJECT_SOURCE_DIR}/SDL/lib)
+set(SDL_INCLUDE_DIR ${PROJECT_SOURCE_DIR}/SDL/include)
+#set(CMAKE_CXX_COMPILER "C:/MinGW/bin/g++")
 
-#include_directories(${PROJECT_SOURCE_DIR}/include)
-#link_directories(${PROJECT_SOURCE_DIR}/lib)
-
-
+#include_directories(${SDL_INCLUDE_DIR})
+#link_directories(
+#        ${PROJECT_SOURCE_DIR}/lib
+#        ${PROJECT_SOURCE_DIR}/include
+#)
 
 find_package (SDL)
 
@@ -28,7 +30,7 @@ if(SDL_FOUND)
             ${SDL_INCLUDE_DIR}
             ${PROJECT_SOURCE_DIR}/glm
     )
-#    link_libraries(${SDL_LIBRARY})
+    link_libraries(${SDL_LIBRARY})
     target_link_libraries(FirstLab ${SDL_LIBRARY})
 endif(SDL_FOUND)
 
